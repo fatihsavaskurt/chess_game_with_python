@@ -4,8 +4,6 @@ from PIL import Image, ImageTk
 import sqlite3
 import webbrowser
 
-
-
 ###---------------------------------------------------------------------------Ana Ekran
 
 def main_screen():
@@ -17,6 +15,7 @@ def main_screen():
     window.geometry("925x500+300+200")
     window.configure(bg="#fff")
     window.resizable(False, False)
+    window.iconbitmap("chess.ico")
 
     img = ImageTk.PhotoImage(file="chess.jpg")
     Label(window, image=img, bg="white").place(x=-100, y=60)
@@ -64,6 +63,8 @@ def account_settings():
     ac.geometry("400x400")
     ac.configure(bg="#fff")
     ac.resizable(False, False)
+    ac.iconbitmap("chess.ico")
+
 
     user_label = Label(ac, text="Kullanıcı Adınız:")
     user_label.grid(row=9, column=0)
@@ -84,9 +85,10 @@ def account_settings():
             position_top = int(screen_height / 4 - window_height / 4)
             position_right = int(screen_width / 2 - window_width / 2)
             win.geometry(f'{window_width}x{window_height}+{position_right}+{position_top}')
-            win.title('Şifre Güncelleme')
+            win.title('Kullanıcı Adı Güncelleme')
             win.configure(background='#f8f8f8')
             win.resizable(0, 0)
+            win.iconbitmap("chess.ico")
 
             user = StringVar()
             password = StringVar()
@@ -245,6 +247,9 @@ root.title("Giriş")
 root.geometry("925x500+300+200")
 root.configure(bg="#fff")
 root.resizable(False,False)
+root.iconbitmap("chess.ico")
+
+
 ###---------------------------------------------------------------------------Kullanıcı adı ve şifrenin kontrolü(database eklenecek)
 
 def signin():
@@ -277,6 +282,8 @@ def forgot_command():
     win.title('Şifre Güncelleme')
     win.configure(background='#f8f8f8')
     win.resizable(0, 0)
+    win.iconbitmap("chess.ico")
+
 
     user = StringVar()
     password = StringVar()
@@ -339,6 +346,8 @@ def signup_command():
     window.geometry("925x500+300+200")
     window.configure(bg="#fff")
     window.resizable(False,False)
+    window.iconbitmap("chess.ico")
+
 ###---------------------------------------------------------------------------Kullanıcı adı ve şifrenin kontrolü
     def register():
         username = user.get()
