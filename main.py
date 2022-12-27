@@ -4,6 +4,8 @@ from PIL import Image, ImageTk
 import sqlite3
 import webbrowser
 
+
+
 ###---------------------------------------------------------------------------Ana Ekran
 
 def main_screen():
@@ -51,7 +53,102 @@ def main_screen():
 
     account_settings_button.place(x=770, y=5)
 
+    admin_panel_button = Button(window, text="Admin Paneli", image=common_img4, width=140, height=20,
+                   compound="c", bg="#201b17", fg="white",
+                   activebackground="white", font=("Arial", 10), command = admin_panel)
+
+    admin_panel_button.place(x=600, y=5)
+
     window.mainloop()
+
+
+
+def admin_panel():
+
+
+    ac = Toplevel()
+    ac.title("Admin Paneli")
+    ac.geometry("400x400")
+    ac.configure(bg="#fff")
+    ac.resizable(False, False)
+    ac.iconbitmap("chess.ico")
+
+
+
+
+
+
+    def query():
+        conn = sqlite3.connect("users.db")
+
+        c = conn.cursor()
+
+        c.execute("SELECT *, oid FROM users")
+        records = c.fetchall()
+        print(records)
+
+        print_records = ""
+        for record in records:
+            print_records += str(record[0]) + "\t" + str(record[1]) + "\t " + str(record[2]) + "\n"
+
+
+
+        query_label = Label(ac, text=print_records, bg="white", font=23)
+        query_label.grid(row=8, column=0, columnspan=2)
+        query_label.place(x=150, y=10)
+
+    frame = Frame(ac, width=348, height=350, bg="white")
+    frame.place(x=480, y=40)
+
+    common_img5 = PhotoImage(width=1, height=1)
+    query_button = Button(ac, text="Kullanıcı Adı, Şifre ve ID'yi Görüntüle", image=common_img5, width=250, height=20,
+                          compound="c", bg="#201b17", fg="white",
+                          activebackground="white", font=("Arial", 10), command=query)
+    query_button.place(x=80, y=90)
+
+    common_img7 = PhotoImage(width=1, height=1)
+    account_settings_button = Button(ac, text="Yeni Hesap Ekle", image=common_img7, width=140, height=20,
+                                     compound="c", bg="#201b17", fg="white",
+                                     activebackground="white", font=("Arial", 10), command= admin_add_member)
+    account_settings_button.place(x=120, y=250)
+
+    ###---------------------------------------------------------------------------Hesabı Silme
+
+    def delete():
+        conn = sqlite3.connect("users.db")
+
+        c = conn.cursor()
+
+        c.execute("DELETE from users WHERE oid=" + delete_box.get())
+
+        conn.commit()
+        conn.close()
+
+    common_img4 = PhotoImage(width=1, height=1)
+    account_settings_button = Button(ac, text="Hesabı Sil", image=common_img4, width=140, height=20,
+                                     compound="c", bg="#201b17", fg="white",
+                                     activebackground="white", font=("Arial", 10), command=delete)
+    account_settings_button.place(x=120, y=180)
+
+    delete_box = Entry(ac, width=30)
+    delete_box.grid(row=11, column=1)
+    delete_box.place(x=160, y=130)
+    delete_box_label = Label(ac, text="ID Numaranızı Girin")
+    delete_box_label.place(x=30, y=130)
+
+
+
+
+
+
+
+
+    ac.mainloop()
+
+def admin_add_member():
+    signup_command()
+
+
 
 
 ###---------------------------------------------------------------------------Hesap Ayarları
@@ -139,7 +236,8 @@ def account_settings():
                 else:
                     messagebox.showerror('Hata!', "Kullanıcı Adınız eşleşmedi!")
 
-###---------------------------------------------------------------------------Kullanıcı Adı Güncelleme Bitiş
+
+ ###---------------------------------------------------------------------------Kullanıcı Adı Güncelleme Bitiş
 
 ###---------------------------------------------------------------------------Şifre Güncelleme
 
@@ -242,6 +340,7 @@ def account_settings():
 ###---------------------------------------------------------------------------Ana Ekran Bitiş
 
 ###---------------------------------------------------------------------------Giriş sayfasının ilk kısmı
+
 root =Tk()
 root.title("Giriş")
 root.geometry("925x500+300+200")
