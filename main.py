@@ -3,6 +3,7 @@ from tkinter import messagebox
 from PIL import Image, ImageTk
 import sqlite3
 import webbrowser
+import os
 
 
 
@@ -17,18 +18,20 @@ def main_screen():
     window.geometry("925x500+300+200")
     window.configure(bg="#fff")
     window.resizable(False, False)
-    window.iconbitmap("chess.ico")
 
-    img = ImageTk.PhotoImage(file="chess.jpg")
+    img = ImageTk.PhotoImage(file=r"C:\Users\90553\Desktop\gui2\chess.jpg")
     Label(window, image=img, bg="white").place(x=-100, y=60)
 
     frame = Frame(window, width=348, height=350, bg="white")
     frame.place(x=480, y=40)
-
+    def new_game_window():
+        os.startfile(r"C:\Users\90553\Desktop\gui2\chess\chess.exe")
     common_img1 = PhotoImage(width=1, height=1)
     new_game_button = Button(window, text="Yeni Oyun", image=common_img1, width=290, height=70, ###-----Satranç Yeni Oyun Başlangıç Butonu
                    compound="c", bg="#201b17", fg="white",
-                   activebackground="white", font=("Arial", 15))
+                   activebackground="white", font=("Arial", 15),command=new_game_window)
+
+    
 
     new_game_button.place(x=500, y=90)
 
@@ -53,102 +56,7 @@ def main_screen():
 
     account_settings_button.place(x=770, y=5)
 
-    admin_panel_button = Button(window, text="Admin Paneli", image=common_img4, width=140, height=20,
-                   compound="c", bg="#201b17", fg="white",
-                   activebackground="white", font=("Arial", 10), command = admin_panel)
-
-    admin_panel_button.place(x=600, y=5)
-
     window.mainloop()
-
-
-
-def admin_panel():
-
-
-    ac = Toplevel()
-    ac.title("Admin Paneli")
-    ac.geometry("400x400")
-    ac.configure(bg="#fff")
-    ac.resizable(False, False)
-    ac.iconbitmap("chess.ico")
-
-
-
-
-
-
-    def query():
-        conn = sqlite3.connect("users.db")
-
-        c = conn.cursor()
-
-        c.execute("SELECT *, oid FROM users")
-        records = c.fetchall()
-        print(records)
-
-        print_records = ""
-        for record in records:
-            print_records += str(record[0]) + "\t" + str(record[1]) + "\t " + str(record[2]) + "\n"
-
-
-
-        query_label = Label(ac, text=print_records, bg="white", font=23)
-        query_label.grid(row=8, column=0, columnspan=2)
-        query_label.place(x=150, y=10)
-
-    frame = Frame(ac, width=348, height=350, bg="white")
-    frame.place(x=480, y=40)
-
-    common_img5 = PhotoImage(width=1, height=1)
-    query_button = Button(ac, text="Kullanıcı Adı, Şifre ve ID'yi Görüntüle", image=common_img5, width=250, height=20,
-                          compound="c", bg="#201b17", fg="white",
-                          activebackground="white", font=("Arial", 10), command=query)
-    query_button.place(x=80, y=90)
-
-    common_img7 = PhotoImage(width=1, height=1)
-    account_settings_button = Button(ac, text="Yeni Hesap Ekle", image=common_img7, width=140, height=20,
-                                     compound="c", bg="#201b17", fg="white",
-                                     activebackground="white", font=("Arial", 10), command= admin_add_member)
-    account_settings_button.place(x=120, y=250)
-
-    ###---------------------------------------------------------------------------Hesabı Silme
-
-    def delete():
-        conn = sqlite3.connect("users.db")
-
-        c = conn.cursor()
-
-        c.execute("DELETE from users WHERE oid=" + delete_box.get())
-
-        conn.commit()
-        conn.close()
-
-    common_img4 = PhotoImage(width=1, height=1)
-    account_settings_button = Button(ac, text="Hesabı Sil", image=common_img4, width=140, height=20,
-                                     compound="c", bg="#201b17", fg="white",
-                                     activebackground="white", font=("Arial", 10), command=delete)
-    account_settings_button.place(x=120, y=180)
-
-    delete_box = Entry(ac, width=30)
-    delete_box.grid(row=11, column=1)
-    delete_box.place(x=160, y=130)
-    delete_box_label = Label(ac, text="ID Numaranızı Girin")
-    delete_box_label.place(x=30, y=130)
-
-
-
-
-
-
-
-
-    ac.mainloop()
-
-def admin_add_member():
-    signup_command()
-
-
 
 
 ###---------------------------------------------------------------------------Hesap Ayarları
@@ -160,8 +68,6 @@ def account_settings():
     ac.geometry("400x400")
     ac.configure(bg="#fff")
     ac.resizable(False, False)
-    ac.iconbitmap("chess.ico")
-
 
     user_label = Label(ac, text="Kullanıcı Adınız:")
     user_label.grid(row=9, column=0)
@@ -182,10 +88,9 @@ def account_settings():
             position_top = int(screen_height / 4 - window_height / 4)
             position_right = int(screen_width / 2 - window_width / 2)
             win.geometry(f'{window_width}x{window_height}+{position_right}+{position_top}')
-            win.title('Kullanıcı Adı Güncelleme')
+            win.title('Şifre Güncelleme')
             win.configure(background='#f8f8f8')
             win.resizable(0, 0)
-            win.iconbitmap("chess.ico")
 
             user = StringVar()
             password = StringVar()
@@ -224,7 +129,7 @@ def account_settings():
 
             def change_username():
                 if new_user_entry.get() == confirm_user_entry.get():
-                    db = sqlite3.connect("users.db")
+                    db = sqlite3.connect(r"C:\Users\90553\Desktop\gui2\users.db")
                     curs = db.cursor()
 
                     insert = '''update users set username=? where username=? '''
@@ -236,8 +141,7 @@ def account_settings():
                 else:
                     messagebox.showerror('Hata!', "Kullanıcı Adınız eşleşmedi!")
 
-
- ###---------------------------------------------------------------------------Kullanıcı Adı Güncelleme Bitiş
+###---------------------------------------------------------------------------Kullanıcı Adı Güncelleme Bitiş
 
 ###---------------------------------------------------------------------------Şifre Güncelleme
 
@@ -251,7 +155,7 @@ def account_settings():
 ###---------------------------------------------------------------------------Hesap Bilgileri
 
     def query():
-        conn = sqlite3.connect("users.db")
+        conn = sqlite3.connect(r"C:\Users\90553\Desktop\gui2\users.db")
 
         c = conn.cursor()
 
@@ -296,7 +200,7 @@ def account_settings():
 ###---------------------------------------------------------------------------Hesabı Silme
 
     def delete():
-        conn = sqlite3.connect("users.db")
+        conn = sqlite3.connect(r"C:\Users\90553\Desktop\gui2\users.db")
 
         c = conn.cursor()
 
@@ -340,22 +244,18 @@ def account_settings():
 ###---------------------------------------------------------------------------Ana Ekran Bitiş
 
 ###---------------------------------------------------------------------------Giriş sayfasının ilk kısmı
-
 root =Tk()
 root.title("Giriş")
 root.geometry("925x500+300+200")
 root.configure(bg="#fff")
 root.resizable(False,False)
-root.iconbitmap("chess.ico")
-
-
 ###---------------------------------------------------------------------------Kullanıcı adı ve şifrenin kontrolü(database eklenecek)
 
 def signin():
     global count
     username=user.get()
     password=code.get()
-    conn = sqlite3.connect("users.db")
+    conn = sqlite3.connect(r"C:\Users\90553\Desktop\gui2\users.db")
     c = conn.cursor()
     c.execute("SELECT * FROM Users where username=? AND password=?",(username,password))
     row = c.fetchone()
@@ -381,8 +281,6 @@ def forgot_command():
     win.title('Şifre Güncelleme')
     win.configure(background='#f8f8f8')
     win.resizable(0, 0)
-    win.iconbitmap("chess.ico")
-
 
     user = StringVar()
     password = StringVar()
@@ -423,7 +321,7 @@ def forgot_command():
 
     def change_password():
         if new_password_entry.get() == confirm_password_entry.get():
-            db = sqlite3.connect("users.db")
+            db = sqlite3.connect(r"C:\Users\90553\Desktop\gui2\users.db")
             curs = db.cursor()
 
             insert = '''update users set Password=? where username=? '''
@@ -437,7 +335,12 @@ def forgot_command():
 
 
 
-
+def admin_signup_command():
+    admin_window=Toplevel(root)
+    admin_window.title("Admin Paneli")
+    admin_window.geometry("925x500+300+200")
+    admin_window.configure(bg="#fff")
+    admin_window.resizable(False,False)
 
 def signup_command():
     window=Toplevel(root)
@@ -445,13 +348,11 @@ def signup_command():
     window.geometry("925x500+300+200")
     window.configure(bg="#fff")
     window.resizable(False,False)
-    window.iconbitmap("chess.ico")
-
 ###---------------------------------------------------------------------------Kullanıcı adı ve şifrenin kontrolü
     def register():
         username = user.get()
         password = code.get()
-        conn = sqlite3.connect("users.db")
+        conn = sqlite3.connect(r"C:\Users\90553\Desktop\gui2\users.db")
         c = conn.cursor()
         if code.get() == code_check.get():
             c.execute("CREATE TABLE IF NOT EXISTS Users (username TEXT,password TEXT)")
@@ -459,7 +360,7 @@ def signup_command():
             user.delete(0,END)
             code.delete(0,END)
             code_check.delete(0,END)
-            messagebox.showinfo("Başarılı","Başarıyla Giriş Yapıldı")
+            messagebox.showinfo("Başarılı","Başarıyla Kayıt Olundu")
             window.destroy()
             root.deiconify()
         else :
@@ -477,7 +378,7 @@ def signup_command():
 
 
 
-    img =ImageTk.PhotoImage(file = "chess.jpg")
+    img =ImageTk.PhotoImage(file = r"C:\Users\90553\Desktop\gui2\chess.jpg")
     Label(window, image=img,bg="white").place(x=-100,y=60)
 
     frame=Frame(window,width=348,height=350,bg="white")
@@ -555,7 +456,7 @@ def signup_command():
 
 
 
-img =ImageTk.PhotoImage(file = "chess.jpg")
+img =ImageTk.PhotoImage(file = r"C:\Users\90553\Desktop\gui2\chess.jpg")
 Label(root, image=img,bg="white").place(x=-100,y=60)
 
 frame=Frame(root,width=348,height=350,bg="white")
@@ -607,11 +508,18 @@ label.place(x=75,y=270)
 label = Label(frame,text="Şifremi unuttum",fg ="black",bg="white",font=("Microsoft YaHei UI Light",9 ))
 label.place(x=75,y=300)
 
+label = Label(frame,text="Admin Paneli",fg ="black",bg="white",font=("Microsoft YaHei UI Light",9 ))
+label.place(x=75,y=330)
+
 forgot_button = Button(frame,width=10,text="Şifremi sıfırla",border=0,bg="#201b17",cursor="hand2",fg="white",command=forgot_command)
 forgot_button.place(x=200,y=300)
 
 sign_up = Button(frame,width=6,text="Kayıt Ol",border=0,bg="#201b17",cursor="hand2",fg="white",command=signup_command)
 sign_up.place(x=200,y=270)
+
+admin = Button(frame,width=16,text="Admin Paneline Giriş",border=0,bg="#201b17",cursor="hand2",fg="white",command=admin_signup_command)
+admin.place(x=200,y=330)
+
 
 
 root.mainloop()

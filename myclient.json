@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "chess-oop-372819",
+  "private_key_id": "08df28ed29275566ce5b4843f2eb5300cfdc7401",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDNAivElecy3Q2h\noRiay72q47d+hBod9VwJVExpRvz/aT9sxo+7p4ikROjW3yuQGg/HQnVKEoMM2QzS\n+9SgWqsybEN97tvRNWpsFvOPt1ypwnX33N/vnocNJayhdloT8jVmyXghEPuTfw7H\naR9dtTdmOXITFwHmOo+LyW1lzDbZ2+G/jlIv5jqgZ+gyUxcRWFPeHXHAQbG7eC3Z\nRfIoAQSw2BDeOI/jKhZsLa6G4AGbPT2VxFYlakq1yYaD66ixVaWhXulAOa6SDFdM\nmKN3JrzAObkesRXkNAeMwmdWUDKADnGs5eBcC7Wv98S08U8Mdu+dVyfM7v3k4Jnl\n+7gH4tyfAgMBAAECggEAMZK2UbWr8AU7IBvr7raYuSOSggHgrODhbhIX3hc/42Uo\nZJ3JMOfsp0hQg3D4wEJFEXp1EUHTtb4glz41Jsd2AV3jniatufOwNc4A/H4q5pPy\n4cpjzjYn0xqKmYqccplNp3rNVTWdmAeP49F8N7Uz3cDDYHFeULVVc8hz7ztIAjr2\nFgbwoo7Tr7zFlJCSVWGntxfiKSWPLaTosrizOUjoOZ1w6aYt7Qf7odHi5RN4M+wk\n6DQxppGSrCP2gJVwXBN7QU6jHHw/zyLE8DIKkdaK3CjHDS2YJg/IeRQjlJaKJahl\nq/xPopcalw/wNUXNpBYC0BkHh0JRjPKXo1whNo9FxQKBgQDpbwq8goOk4P3vFlW/\nQmPXFR8W9GQPV6mVTtCI19pf/2Z5i6onVZi+1Romg1cqQPczFa+ldGSGgaOIteHu\n2JnQjj15yzZW2dPhpKtn8z65CNsGGP55Ntoc1ZIX5QR2tk8q8aGmA0dfBSk1dNWv\nKPrwPkIKEhnZUAPhF+R+YZlfrQKBgQDg06rqvn4l0uuo+u+nduI/gEROKdiSqSNw\nZWlBo6HuJRZYT/6QbwnIkv0x6eyzVs+ginM1nDRb0DWuxVLplNMzpsu3NgXdscQJ\naKbk0aEafXjM+35+eYvrwG1OHUC8qk+TCWMrPH5fb6aMxoRNvUktxZ1AbIM2ilf5\nrAzL79QG+wKBgD8sVfN+PrI4UYCKwtnn1a03ghpsOUgNqU9G7RibkfW44Lq0GXBb\nseKzOUiC8uv0ePHSRJ66SRo9q0wsLOC+raHLXMfBPwtyF+1Q6zJOmgLpapzT1spn\nFdAH3GmrCPI3lGVCz0RmTsJgWy6kV8/3fzHVJ3oiO+ybwvD/zk6Fi0RhAoGBALOW\noMqOi7mu9+utNs4wWp2a2fUN3B+a1+IqP5/dE7ZlDapRi+jXqZr8PyAl2ZuP1p5I\nuaqzMee9M4R9vrMy3Fo//C5HCvyByTQy0k2pXeUJIPusUOi6MpiIx0dEere524J6\nVyrsUY3uY73DvV9TuibD2c7iXxWsAIZBdp9Y3acNAoGAc6UTffwejbQz2Mu/B+Ja\nmWGhc9n/rQ/Xf72B+yk6keGmGpOAiX3pdml9yfAfggmToDByxQQGuILW6FgExPY4\nWJmnP0k1TYfMv0+p4Znd7oStupeRk414nWX6WwCjcGXexehqPt9ij+ndjp0hXooF\nuIH7ztHXK0CBC0wv5ShPnW4=\n-----END PRIVATE KEY-----\n",
+  "client_email": "yunusemre@chess-oop-372819.iam.gserviceaccount.com",
+  "client_id": "103601745506593560586",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/yunusemre%40chess-oop-372819.iam.gserviceaccount.com"
+}
