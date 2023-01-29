@@ -58,72 +58,78 @@ def main_screen():
 
 
 
-
-
-
-
-
 def account_settings():
 
     ac = Toplevel()
     ac.title("Hesap Ayarları")
-    ac.geometry("400x400")
+    ac.geometry("925x500+300+200")
     ac.configure(bg="#fff")
     ac.resizable(False, False)
-
-    user_label = Label(ac, text="Kullanıcı Adınız:")
-    user_label.grid(row=9, column=0)
-    user_label.place(x=80, y= 50)
-
-    username_label = Label(ac, text=user.get(), bg="white", font = 23)
-    username_label.grid(row = 9,column=5,columnspan=2)
-    username_label.place(x=190, y=50)
-
-
+    ac = Toplevel()
+    ac.title("Hesap Ayarları")
+    ac.geometry("925x500+300+200")
+    ac.configure(bg="#fff")
+    ac.resizable(False, False)
 
     def query():
         conn = sqlite3.connect("users.db")
 
         c = conn.cursor()
 
-        c.execute("SELECT *, oid FROM users")
+        c.execute("SELECT *, oid FROM users ORDER BY rowid DESC LIMIT 1;")
         records = c.fetchall()
         print(records)
 
         print_records = ""
         for record in records:
-            if record[0] == user.get():
+            print_records += record[0] + " " + record[1]
 
-                id_number_label = Label(ac, text="ID Numaranız:")
-                id_number_label.grid(row=9, column=0)
-                id_number_label.place(x=80, y=90)
+        query_label = Label(ac, text=print_records, bg="white", font = 23)
+        query_label.place(x=500, y=200)
 
-                id_label = Label(ac, text=str(record[2]), bg="white", font=23)
-                id_label.grid(row=9, column=0)
-                id_label.place(x=190, y=90)
 
-                code_label = Label(ac, text="Şifreniz:")
-                code_label.grid(row=9, column=0)
-                code_label.place(x=80, y=70)
-
-                password_label = Label(ac, text=str(record[1]), bg="white", font=23)
-                password_label.grid(row=9, column=0)
-                password_label.place(x=190, y=70)
-
-        query_label = Label(ac, text=print_records, bg="white", font=23)
-        query_label.grid(row=8, column=0, columnspan=2)
-        query_label.place(x = 150, y= 150)
-
+    img = ImageTk.PhotoImage(file="chess.jpg")
+    Label(ac, image=img, bg="white").place(x=-100, y=60)
 
     frame = Frame(ac, width=348, height=350, bg="white")
     frame.place(x=480, y=40)
 
-    query_button = Button(ac,text="Şifremi ve ID Numaramı Göster", command=query)
-    query_button.grid(row=7,column=0,columnspan=2,pady=10,padx=10,ipadx=137 )
-    query_button.place(x=150,y=250)
+    query_button = PhotoImage(width=1, height=1)
+    settings_button = Button(ac, text="Hesap Bilgilerini Göster", image=query_button, command = query, width=250, height=40,
+                   compound="c", bg="#201b17", fg="white",
+                   activebackground="white", font=("Arial", 15))
+    settings_button.place(x=500, y=290)
+
+
+
+
 
 
     ac.mainloop()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
