@@ -1,4 +1,4 @@
-                                                                Design Chess
+Design Chess
                                                                   
 Chess is a two-player strategy board game played on a chessboard, which is a checkered gameboard with 64 squares arranged in an 8×8 grid. There are a few versions of game types that people play all over the world. In this design problem, we are going to focus on designing a two-player online chess game.
 
